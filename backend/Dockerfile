@@ -1,5 +1,6 @@
 FROM node:22-alpine
 RUN apk add mysql mysql-client
+
 WORKDIR /usr/src/backend
 
 COPY package*.json ./

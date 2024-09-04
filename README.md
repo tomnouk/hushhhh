@@ -10,13 +10,8 @@ huShhh mappa le zone di rumore e di quiete, aiutando le persone a scegliere i lu
 ## Installazione docker
 Per lanciare l'applicazione e' necessario avere Docker installato sul vostro sistema.
 ```bash
-  make
+  sudo make
 ```
 Nella root lanciate 'make' con sudo e il Makefile installera' i Container e le immagini relative.
 L'idea era di implementare frontend, backend, e database. Purtroppo non c'e' stato abbastanza bene per sistemare tutto :_)Connettersi tramite localhost:5173. La funzione di login non e' completa, la richiesta viene correttamente fatta al database ma non viene salvato l'utente, quindi manca la persistenza dei dati. Tutto viene fatto per la sessione corrente.
 Bisogna abilitare sia la geolocalizzazione che il microfono per utilizzare il servizio.
-
-AVVISO POST PUSH
-Ci siamo accorti che non venivano caricati gli elementi nel database per mostrare le varie rivelazioni sonora in alcune aree.
-Basta lanciare lo script in python (avendo ovviamente python3 installato) dopo che sono stati caricati i container. Serve anche il connector di mysql (pip install mysql-connector-python).
-Ci scusiamo per il disagio!
