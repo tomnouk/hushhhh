@@ -1,0 +1,62 @@
+version: '3.4'
+services:
+
+  frontend:
+    container_name: frontend
+    image: frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    depends_on:
+      - backend
+    ports:
+      - "5173:5173"
+    networks:
+      - hushhh-networks
+    volumes:
+      - ./frontend:/usr/src/frontend
+      - /usr/src/frontend/node_modules
+    restart: on-failure
+
+  backend:
+    container_name: backend
+    image: backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    
+    ports:
+      - '8080:8080'
+    depends_on:
+      - mariadb
+    networks:
+      - hushhh-networks
+    volumes:
+      - ./backend:/usr/src/backend
+      - /usr/src/backend/node_modules
+    restart: on-failure
+  
+  mariadb:
+    image: mariadb
+    container_name: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: mydatabase
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    ports:
+      - '3306:3306'
+    expose:
+      - 3306
+    volumes:
+      - db:/var/lib/mysql
+    networks:
+      - hushhh-networks
+
+networks:
+  frontend:
+  hushhh-networks:
+
+volumes:
+  db:    
